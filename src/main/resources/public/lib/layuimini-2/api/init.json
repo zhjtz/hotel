@@ -1,0 +1,131 @@
+{
+  "homeInfo": {
+    "title": "首页",
+    "href": "page/welcome-1.html?t=1"
+  },
+  "logoInfo": {
+    "title": "Hotel管理系统",
+    "image": "lib/layuimini-2/images/logo.png",
+    "href": ""
+  },
+  "menuInfo": [
+    {
+      "title": "Hostel Management System",
+      "icon": "fa fa-address-book",
+      "href": "",
+      "target": "_self",
+      "child": [
+        {
+          "title": "客房管理",
+          "href": "",
+          "icon": "fa fa-home",
+          "target": "_self",
+          "child": [
+            {
+              "title": "客房设置",
+              "href": "page/welcome-1.html",
+              "icon": "fa fa-tachometer",
+              "target": "_self"
+            }
+          ]
+        },
+        {
+          "title": "商品管理",
+          "href": "page/menu.html",
+          "icon": "fa fa-cart-arrow-down",
+          "target": "_self",
+          "child": [
+            {
+              "title": "商品设置",
+              "href": "page/welcome-1.html",
+              "icon": "fa fa-tachometer",
+              "target": "_self"
+            }
+          ]
+        },
+        {
+          "title": "住宿管理",
+          "href": "page/setting.html",
+          "icon": "fa fa-arrows",
+          "target": "_self",
+          "child": [
+            {
+              "title": "客房预定",
+              "href": "page/welcome-1.html",
+              "icon": "fa fa-tachometer",
+              "target": "_self"
+            },
+            {
+              "title": "住宿登记",
+              "href": "page/welcome-1.html",
+              "icon": "fa fa-tachometer",
+              "target": "_self"
+            }
+          ]
+        },
+        {
+          "title": "财务管理",
+          "href": "page/table.html",
+          "icon": "fa fa-cc-visa",
+          "target": "_self",
+          "child": [
+            {
+              "title": "财务统计",
+              "href": "page/welcome-1.html",
+              "icon": "fa fa-tachometer",
+              "target": "_self"
+            }
+          ]
+        },
+        {
+          "title": "旅客管理",
+          "href": "",
+          "icon": "fa fa-user-plus",
+          "target": "_self",
+          "child": [
+            {
+              "title": "旅客信息",
+              "href": "page/form.html",
+              "icon": "fa fa-list-alt",
+              "target": "_self"
+            },
+            {
+              "title": "团队信息",
+              "href": "page/form-step.html",
+              "icon": "fa fa-navicon",
+              "target": "_self"
+            }
+          ]
+        },
+        {
+          "title": "管理员管理",
+          "href": "",
+          "icon": "fa fa-flag-o",
+          "target": "_self",
+          "child": [
+            {
+              "title": "管理员信息",
+              "href": "page/login-1.html",
+              "icon": "fa fa-stumbleupon-circle",
+              "target": "_blank"
+            }
+            ]
+        },
+        {
+          "title": "日志管理",
+          "href": "",
+          "icon": "fa fa-home",
+          "target": "_self",
+          "child": [
+            {
+              "title": "管理员登录日志",
+              "href": "page/404.html",
+              "icon": "fa fa-hourglass-end",
+              "target": "_self"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
