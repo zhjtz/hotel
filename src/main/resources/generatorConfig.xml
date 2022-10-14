@@ -67,7 +67,7 @@
         </javaClientGenerator>
 
         <!-- 数据库的表名与对应的实体类的名称，tableName是数据库中的表名，domainObjectName是生成的JAVA模型名 -->
-        <table tableName="t_permission" domainObjectName="Permission"
+        <table tableName="passengerscomments" domainObjectName="PassengersComments"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
         </table>

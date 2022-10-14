@@ -4,17 +4,31 @@
     "href": "page/welcome-1.html?t=1"
   },
   "logoInfo": {
-    "title": "Hotel管理系统",
+    "title": "",
     "image": "lib/layuimini-2/images/logo.png",
     "href": ""
   },
   "menuInfo": [
     {
-      "title": "Hostel Management System",
+      "title": "酒店管理",
       "icon": "fa fa-address-book",
       "href": "",
       "target": "_self",
       "child": [
+        {
+          "title": "房态展示",
+          "href": "",
+          "icon": "fa fa-home",
+          "target": "_self",
+          "child": [
+            {
+              "title": "房态图",
+              "href": "StayRegister/list",
+              "icon": "fa fa-tachometer",
+              "target": "_self"
+            }
+          ]
+        },
         {
           "title": "客房管理",
           "href": "",
@@ -85,13 +99,13 @@
           "child": [
             {
               "title": "旅客信息",
-              "href": "page/form.html",
+              "href": "passenger/list",
               "icon": "fa fa-list-alt",
               "target": "_self"
             },
             {
               "title": "团队信息",
-              "href": "page/form-step.html",
+              "href": "receivetarget/list",
               "icon": "fa fa-navicon",
               "target": "_self"
             }
@@ -100,16 +114,16 @@
         {
           "title": "管理员管理",
           "href": "",
-          "icon": "fa fa-flag-o",
+          "icon": "fa fa-user-plus",
           "target": "_self",
           "child": [
             {
               "title": "管理员信息",
-              "href": "page/login-1.html",
-              "icon": "fa fa-stumbleupon-circle",
-              "target": "_blank"
+              "href": "aa/list",
+              "icon": "fa fa-list-alt",
+              "target": "_self"
             }
-            ]
+          ]
         },
         {
           "title": "日志管理",
@@ -120,6 +134,20 @@
             {
               "title": "管理员登录日志",
               "href": "page/404.html",
+              "icon": "fa fa-hourglass-end",
+              "target": "_self"
+            }
+          ]
+        },
+        {
+          "title": "评论管理",
+          "href": "",
+          "icon": "fa fa-home",
+          "target": "_self",
+          "child": [
+            {
+              "title": "评论管理",
+              "href": "comment/list",
               "icon": "fa fa-hourglass-end",
               "target": "_self"
             }

@@ -1,11 +1,11 @@
 /*头部右侧背景色 headerRightBg */
 .layui-layout-admin .layui-header {
-    background-color: #ffffff !important;
+    background-color: #bda8a8 !important;
 }
 
 /*头部右侧选中背景色 headerRightBgThis */
 .layui-layout-admin .layui-header .layuimini-header-content > ul > .layui-nav-item.layui-this, .layuimini-tool i:hover {
-    background-color: #e4e4e4 !important;
+    background-color: #100f0f !important;
 }
 
 /*头部右侧字体颜色 headerRightColor */
@@ -35,7 +35,7 @@
 
 /**头部右侧更多下拉配置色 headerRightNavMoreBg headerRightNavMoreColor */
 .layui-header .layui-nav .layui-nav-child dd.layui-this a, .layui-header .layui-nav-child dd.layui-this, .layui-layout-admin .layui-header .layui-nav .layui-nav-item .layui-nav-child .layui-this a {
-    background-color: #1E9FFF !important;
+    background-color: #1e9fff !important;
     color: #ffffff !important;
 }
 
@@ -66,7 +66,7 @@
 
 /*左侧菜单背景 leftMenuBg */
 .layui-side.layui-bg-black, .layui-side.layui-bg-black > .layuimini-menu-left > ul, .layuimini-menu-left-zoom > ul {
-    background-color: #28333E !important;
+    background-color: rgba(228,228,228,.3) !important;
 }
 
 /*左侧菜单选中背景 leftMenuBgThis */
@@ -91,5 +91,5 @@
 
 /**tab选项卡选中颜色 tabActiveColor */
 .layuimini-tab .layui-tab-title .layui-this .layuimini-tab-active {
-    background-color: #1e9fff;
+    background-color: #BFE470;
 }

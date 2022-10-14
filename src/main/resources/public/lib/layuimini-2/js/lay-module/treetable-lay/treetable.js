@@ -81,7 +81,7 @@ layui.define(['layer', 'table'], function (exports) {
                 }
                 iconHtml += '&nbsp;&nbsp;';
                 var ttype = isDir ? 'dir' : 'file';
-                var vg = '<span class="treeTable-icon open" lay-tid="' + mId + '" lay-tpid="' + mPid + '" lay-ttype="' + ttype + '">';
+                var vg = '<span class="treeTable-icon open" lay-tid="' + mId + '" lay-tpid="' + mPid + '" lay-ttype="' + ttype + '" style="cursor: pointer;">';
                 return vg + iconHtml + d[param.cols[0][param.treeColIndex].field] + '</span>'
             };
 

@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxxx.hotel.dao.PassengerMapper">
+  <resultMap id="BaseResultMap" type="com.xxxx.hotel.vo.Passenger">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="papersID" jdbcType="INTEGER" property="papersid" />
+    <result column="educationDegreeID" jdbcType="INTEGER" property="educationdegreeid" />
+    <result column="genderID" jdbcType="INTEGER" property="genderid" />
+    <result column="passengerLevelID" jdbcType="INTEGER" property="passengerlevelid" />
+    <result column="nationID" jdbcType="INTEGER" property="nationid" />
+    <result column="thingReasonID" jdbcType="INTEGER" property="thingreasonid" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="papersNumber" jdbcType="VARCHAR" property="papersnumber" />
+    <result column="birthDate" jdbcType="VARCHAR" property="birthdate" />
+    <result column="licenceIssuingAuthorty" jdbcType="VARCHAR" property="licenceissuingauthorty" />
+    <result column="unitsOrAddress" jdbcType="VARCHAR" property="unitsoraddress" />
+    <result column="papersValidity" jdbcType="VARCHAR" property="papersvalidity" />
+    <result column="profession" jdbcType="VARCHAR" property="profession" />
+    <result column="whereAreFrom" jdbcType="VARCHAR" property="wherearefrom" />
+    <result column="whereToGo" jdbcType="VARCHAR" property="wheretogo" />
+    <result column="contactPhoneNumber" jdbcType="VARCHAR" property="contactphonenumber" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, papersID, educationDegreeID, genderID, passengerLevelID, nationID, thingReasonID, 
+    name, papersNumber, birthDate, licenceIssuingAuthorty, unitsOrAddress, papersValidity, 
+    profession, whereAreFrom, whereToGo, contactPhoneNumber, remarks
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from passenger
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from passenger
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xxxx.hotel.vo.Passenger">
+    insert into passenger (id, papersID, educationDegreeID, 
+      genderID, passengerLevelID, nationID, 
+      thingReasonID, name, papersNumber, 
+      birthDate, licenceIssuingAuthorty, unitsOrAddress, 
+      papersValidity, profession, whereAreFrom, 
+      whereToGo, contactPhoneNumber, remarks
+      )
+    values (#{id,jdbcType=INTEGER}, #{papersid,jdbcType=INTEGER}, #{educationdegreeid,jdbcType=INTEGER}, 
+      #{genderid,jdbcType=INTEGER}, #{passengerlevelid,jdbcType=INTEGER}, #{nationid,jdbcType=INTEGER}, 
+      #{thingreasonid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{papersnumber,jdbcType=VARCHAR}, 
+      #{birthdate,jdbcType=VARCHAR}, #{licenceissuingauthorty,jdbcType=VARCHAR}, #{unitsoraddress,jdbcType=VARCHAR}, 
+      #{papersvalidity,jdbcType=VARCHAR}, #{profession,jdbcType=VARCHAR}, #{wherearefrom,jdbcType=VARCHAR}, 
+      #{wheretogo,jdbcType=VARCHAR}, #{contactphonenumber,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xxxx.hotel.vo.Passenger">
+    insert into passenger
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="papersid != null">
+        papersID,
+      </if>
+      <if test="educationdegreeid != null">
+        educationDegreeID,
+      </if>
+      <if test="genderid != null">
+        genderID,
+      </if>
+      <if test="passengerlevelid != null">
+        passengerLevelID,
+      </if>
+      <if test="nationid != null">
+        nationID,
+      </if>
+      <if test="thingreasonid != null">
+        thingReasonID,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="papersnumber != null">
+        papersNumber,
+      </if>
+      <if test="birthdate != null">
+        birthDate,
+      </if>
+      <if test="licenceissuingauthorty != null">
+        licenceIssuingAuthorty,
+      </if>
+      <if test="unitsoraddress != null">
+        unitsOrAddress,
+      </if>
+      <if test="papersvalidity != null">
+        papersValidity,
+      </if>
+      <if test="profession != null">
+        profession,
+      </if>
+      <if test="wherearefrom != null">
+        whereAreFrom,
+      </if>
+      <if test="wheretogo != null">
+        whereToGo,
+      </if>
+      <if test="contactphonenumber != null">
+        contactPhoneNumber,
+      </if>
+      <if test="remarks != null">
+        remarks,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="papersid != null">
+        #{papersid,jdbcType=INTEGER},
+      </if>
+      <if test="educationdegreeid != null">
+        #{educationdegreeid,jdbcType=INTEGER},
+      </if>
+      <if test="genderid != null">
+        #{genderid,jdbcType=INTEGER},
+      </if>
+      <if test="passengerlevelid != null">
+        #{passengerlevelid,jdbcType=INTEGER},
+      </if>
+      <if test="nationid != null">
+        #{nationid,jdbcType=INTEGER},
+      </if>
+      <if test="thingreasonid != null">
+        #{thingreasonid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="papersnumber != null">
+        #{papersnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="birthdate != null">
+        #{birthdate,jdbcType=VARCHAR},
+      </if>
+      <if test="licenceissuingauthorty != null">
+        #{licenceissuingauthorty,jdbcType=VARCHAR},
+      </if>
+      <if test="unitsoraddress != null">
+        #{unitsoraddress,jdbcType=VARCHAR},
+      </if>
+      <if test="papersvalidity != null">
+        #{papersvalidity,jdbcType=VARCHAR},
+      </if>
+      <if test="profession != null">
+        #{profession,jdbcType=VARCHAR},
+      </if>
+      <if test="wherearefrom != null">
+        #{wherearefrom,jdbcType=VARCHAR},
+      </if>
+      <if test="wheretogo != null">
+        #{wheretogo,jdbcType=VARCHAR},
+      </if>
+      <if test="contactphonenumber != null">
+        #{contactphonenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xxxx.hotel.vo.Passenger">
+    update passenger
+    <set>
+      <if test="papersid != null">
+        papersID = #{papersid,jdbcType=INTEGER},
+      </if>
+      <if test="educationdegreeid != null">
+        educationDegreeID = #{educationdegreeid,jdbcType=INTEGER},
+      </if>
+      <if test="genderid != null">
+        genderID = #{genderid,jdbcType=INTEGER},
+      </if>
+      <if test="passengerlevelid != null">
+        passengerLevelID = #{passengerlevelid,jdbcType=INTEGER},
+      </if>
+      <if test="nationid != null">
+        nationID = #{nationid,jdbcType=INTEGER},
+      </if>
+      <if test="thingreasonid != null">
+        thingReasonID = #{thingreasonid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="papersnumber != null">
+        papersNumber = #{papersnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="birthdate != null">
+        birthDate = #{birthdate,jdbcType=VARCHAR},
+      </if>
+      <if test="licenceissuingauthorty != null">
+        licenceIssuingAuthorty = #{licenceissuingauthorty,jdbcType=VARCHAR},
+      </if>
+      <if test="unitsoraddress != null">
+        unitsOrAddress = #{unitsoraddress,jdbcType=VARCHAR},
+      </if>
+      <if test="papersvalidity != null">
+        papersValidity = #{papersvalidity,jdbcType=VARCHAR},
+      </if>
+      <if test="profession != null">
+        profession = #{profession,jdbcType=VARCHAR},
+      </if>
+      <if test="wherearefrom != null">
+        whereAreFrom = #{wherearefrom,jdbcType=VARCHAR},
+      </if>
+      <if test="wheretogo != null">
+        whereToGo = #{wheretogo,jdbcType=VARCHAR},
+      </if>
+      <if test="contactphonenumber != null">
+        contactPhoneNumber = #{contactphonenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null">
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xxxx.hotel.vo.Passenger">
+    update passenger
+    set papersID = #{papersid,jdbcType=INTEGER},
+      educationDegreeID = #{educationdegreeid,jdbcType=INTEGER},
+      genderID = #{genderid,jdbcType=INTEGER},
+      passengerLevelID = #{passengerlevelid,jdbcType=INTEGER},
+      nationID = #{nationid,jdbcType=INTEGER},
+      thingReasonID = #{thingreasonid,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      papersNumber = #{papersnumber,jdbcType=VARCHAR},
+      birthDate = #{birthdate,jdbcType=VARCHAR},
+      licenceIssuingAuthorty = #{licenceissuingauthorty,jdbcType=VARCHAR},
+      unitsOrAddress = #{unitsoraddress,jdbcType=VARCHAR},
+      papersValidity = #{papersvalidity,jdbcType=VARCHAR},
+      profession = #{profession,jdbcType=VARCHAR},
+      whereAreFrom = #{wherearefrom,jdbcType=VARCHAR},
+      whereToGo = #{wheretogo,jdbcType=VARCHAR},
+      contactPhoneNumber = #{contactphonenumber,jdbcType=VARCHAR},
+      remarks = #{remarks,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <!-- 多条件分页查询旅客信息 -->
+  <select id="selectByParams" parameterType="com.xxxx.hotel.query.PassengerQuery" resultType="com.xxxx.hotel.vo.Passenger">
+    SELECT
+        p.*,
+        a.attributeDetailsName AS papersName,
+        c.attributeDetailsName AS genderName,
+        d.attributeDetailsName AS passengerLevelName,
+        e.attributeDetailsName AS nationName,
+        f.attributeDetailsName AS thingReasonName
+    FROM
+        passenger p
+    INNER JOIN attributedetails a ON p.papersID = a.id
+    INNER JOIN attributedetails c ON p.genderID = c.id
+    INNER JOIN attributedetails d ON p.passengerLevelID = d.id
+    INNER JOIN attributedetails e ON p.nationID = e.id
+    INNER JOIN attributedetails f ON p.thingReasonID = f.id
+    <where>
+      isValid = 1
+      <if test="name != null and name!=''">
+        and name like concat('%',#{name},'%')
+      </if>
+    </where>
+
+  </select>
+
+  <!-- 通过身份证号查询旅客是否存在 -->
+  <select id="selectByPapersnumber" parameterType="string" resultType="com.xxxx.hotel.vo.Passenger">
+    select
+        <include refid="Base_Column_List"></include>
+    from
+        passenger
+    where
+        papersnumber = #{papersnumber}
+  </select>
+
+  <!-- 旅客批量删除 (修改操作, 将is_valid属性设置为0 ) -->
+  <update id="deleteBatch">
+    update
+        passenger
+    set
+        isValid = 0
+    where
+        id in
+    <foreach collection="array" separator="," open="(" close=")" item="id">
+      #{id}
+    </foreach>
+  </update>
+</mapper>

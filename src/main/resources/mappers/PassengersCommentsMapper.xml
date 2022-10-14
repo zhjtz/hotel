@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxxx.hotel.dao.PassengersCommentsMapper">
+  <resultMap id="BaseResultMap" type="com.xxxx.hotel.vo.PassengersComments">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="passengerID" jdbcType="INTEGER" property="passengerid" />
+    <result column="evaluationLevelID" jdbcType="INTEGER" property="evaluationlevelid" />
+    <result column="evaluationDate" jdbcType="TIMESTAMP" property="evaluationdate" />
+    <result column="evaluationText" jdbcType="VARCHAR" property="evaluationtext" />
+    <result column="isValid" jdbcType="INTEGER" property="isvalid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, passengerID, evaluationLevelID, evaluationDate, evaluationText, isValid
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from passengerscomments
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from passengerscomments
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xxxx.hotel.vo.PassengersComments">
+    insert into passengerscomments (id, passengerID, evaluationLevelID, 
+      evaluationDate, evaluationText, isValid
+      )
+    values (#{id,jdbcType=INTEGER}, #{passengerid,jdbcType=INTEGER}, #{evaluationlevelid,jdbcType=INTEGER}, 
+      #{evaluationdate,jdbcType=TIMESTAMP}, #{evaluationtext,jdbcType=VARCHAR}, #{isvalid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xxxx.hotel.vo.PassengersComments">
+    insert into passengerscomments
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="passengerid != null">
+        passengerID,
+      </if>
+      <if test="evaluationlevelid != null">
+        evaluationLevelID,
+      </if>
+      <if test="evaluationdate != null">
+        evaluationDate,
+      </if>
+      <if test="evaluationtext != null">
+        evaluationText,
+      </if>
+      <if test="isvalid != null">
+        isValid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="passengerid != null">
+        #{passengerid,jdbcType=INTEGER},
+      </if>
+      <if test="evaluationlevelid != null">
+        #{evaluationlevelid,jdbcType=INTEGER},
+      </if>
+      <if test="evaluationdate != null">
+        #{evaluationdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="evaluationtext != null">
+        #{evaluationtext,jdbcType=VARCHAR},
+      </if>
+      <if test="isvalid != null">
+        #{isvalid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xxxx.hotel.vo.PassengersComments">
+    update passengerscomments
+    <set>
+      <if test="passengerid != null">
+        passengerID = #{passengerid,jdbcType=INTEGER},
+      </if>
+      <if test="evaluationlevelid != null">
+        evaluationLevelID = #{evaluationlevelid,jdbcType=INTEGER},
+      </if>
+      <if test="evaluationdate != null">
+        evaluationDate = #{evaluationdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="evaluationtext != null">
+        evaluationText = #{evaluationtext,jdbcType=VARCHAR},
+      </if>
+      <if test="isvalid != null">
+        isValid = #{isvalid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xxxx.hotel.vo.PassengersComments">
+    update passengerscomments
+    set passengerID = #{passengerid,jdbcType=INTEGER},
+      evaluationLevelID = #{evaluationlevelid,jdbcType=INTEGER},
+      evaluationDate = #{evaluationdate,jdbcType=TIMESTAMP},
+      evaluationText = #{evaluationtext,jdbcType=VARCHAR},
+      isValid = #{isvalid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <!-- 根据条件分页查询旅客评论 -->
+  <select id="selectByParams" parameterType="com.xxxx.hotel.query.CommentsQuery" resultType="com.xxxx.hotel.vo.PassengersComments">
+    SELECT
+        pc.*,
+        a.attributeDetailsName AS evaluationlevelName,
+        p.NAME
+    FROM
+	    passengerscomments pc
+	INNER JOIN attributedetails a ON pc.evaluationlevelid = a.id
+	INNER JOIN passenger p ON pc.passengerid = p.id
+	<where>
+        pc.isValid = 1
+      <if test="evaluationlevelID != null and evaluationlevelID!=''">
+        and evaluationlevelID = #{evaluationlevelID}
+      </if>
+      <if test="startDate != null and endDate!=''">
+        and evaluationdate BETWEEN #{startDate} AND #{endDate}
+      </if>
+    </where>
+  </select>
+
+  <!-- 删除团队信息(批量删除)(修改操作, 将is_valid属性设置为0 ) -->
+  <update id="deleteBatchByIds">
+    update
+    passengerscomments
+    set
+    isValid = 0
+    where
+    id in
+    <foreach collection="array" separator="," open="(" close=")" item="id">
+      #{id}
+    </foreach>
+  </update>
+
+  <!-- 根据Id查询旅客信息 -->
+  <select id="selectById" parameterType="Integer" resultType="com.xxxx.hotel.vo.Passenger">
+  SELECT
+	p.*,
+	a.attributeDetailsName AS papersName,
+	c.attributeDetailsName AS genderName,
+	d.attributeDetailsName AS passengerLevelName,
+	e.attributeDetailsName AS nationName,
+	f.attributeDetailsName AS thingReasonName
+FROM
+	passenger p
+	INNER JOIN attributedetails a ON p.papersID = a.id
+	INNER JOIN attributedetails c ON p.genderID = c.id
+	INNER JOIN attributedetails d ON p.passengerLevelID = d.id
+	INNER JOIN attributedetails e ON p.nationID = e.id
+	INNER JOIN attributedetails f ON p.thingReasonID = f.id
+	INNER JOIN passengerscomments pc ON p.id = pc.passengerID
+WHERE
+	 passengerid = #{passengerid}
+  </select>
+</mapper>

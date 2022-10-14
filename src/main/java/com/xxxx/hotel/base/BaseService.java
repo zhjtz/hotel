@@ -2,6 +2,7 @@ package com.xxxx.hotel.base;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.xxxx.hotel.vo.Passenger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 
@@ -117,7 +118,6 @@ public abstract class BaseService<T,ID> {
         result.put("msg","");
         return result;
     }
-
 
 
 }

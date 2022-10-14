@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxxx.hotel.dao.StayRegisterMapper">
+    <select id="selectAll" resultType="com.xxxx.hotel.vo.RoomSetPo">
+     SELECT
+	r.*,
+	a.attributeDetailsName AS guestRoomLevelName,
+	b.attributeDetailsName AS roomName
+    FROM
+	room r
+	INNER JOIN attributedetails a ON r.guestRoomLevelID = a.id
+	INNER JOIN attributedetails b ON r.roomStateID = b.id
+    ORDER BY
+	r.roomNumber ASC
+  </select>
+
+    <select id="levelSelectInformation" resultType="com.xxxx.hotel.vo.RoomSetPo">
+        SELECT
+            r.*,a.attributeDetailsName AS guestRoomLevelName,b.attributeDetailsName AS roomName
+        FROM
+            room r
+        INNER JOIN attributedetails a ON r.guestRoomLevelID=a.id
+        INNER JOIN attributedetails b ON r.roomStateID=b.id
+        WHERE
+            r.guestRoomLevelID = #{guestRoomLevelID,jdbcType=INTEGER}
+  </select>
+</mapper>

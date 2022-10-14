@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxxx.hotel.dao.ReceivetargetMapper">
+  <resultMap id="BaseResultMap" type="com.xxxx.hotel.vo.Receivetarget">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="targetTypeID" jdbcType="INTEGER" property="targettypeid" />
+    <result column="principal" jdbcType="VARCHAR" property="principal" />
+    <result column="teamName" jdbcType="VARCHAR" property="teamname" />
+    <result column="teamCode" jdbcType="VARCHAR" property="teamcode" />
+    <result column="registerTime" jdbcType="TIMESTAMP" property="registertime" />
+    <result column="contactPhoneNUmber" jdbcType="VARCHAR" property="contactphonenumber" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, targetTypeID, principal, teamName, teamCode, registerTime, contactPhoneNUmber
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from receivetarget
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from receivetarget
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xxxx.hotel.vo.Receivetarget">
+    insert into receivetarget (id, targetTypeID, principal, 
+      teamName, teamCode, registerTime, 
+      contactPhoneNUmber)
+    values (#{id,jdbcType=INTEGER}, #{targettypeid,jdbcType=INTEGER}, #{principal,jdbcType=VARCHAR}, 
+      #{teamname,jdbcType=VARCHAR}, #{teamcode,jdbcType=VARCHAR}, #{registertime,jdbcType=TIMESTAMP}, 
+      #{contactphonenumber,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xxxx.hotel.vo.Receivetarget">
+    insert into receivetarget
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="targettypeid != null">
+        targetTypeID,
+      </if>
+      <if test="principal != null">
+        principal,
+      </if>
+      <if test="teamname != null">
+        teamName,
+      </if>
+      <if test="teamcode != null">
+        teamCode,
+      </if>
+      <if test="registertime != null">
+        registerTime,
+      </if>
+      <if test="contactphonenumber != null">
+        contactPhoneNUmber,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="targettypeid != null">
+        #{targettypeid,jdbcType=INTEGER},
+      </if>
+      <if test="principal != null">
+        #{principal,jdbcType=VARCHAR},
+      </if>
+      <if test="teamname != null">
+        #{teamname,jdbcType=VARCHAR},
+      </if>
+      <if test="teamcode != null">
+        #{teamcode,jdbcType=VARCHAR},
+      </if>
+      <if test="registertime != null">
+        #{registertime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contactphonenumber != null">
+        #{contactphonenumber,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xxxx.hotel.vo.Receivetarget">
+    update receivetarget
+    <set>
+      <if test="targettypeid != null">
+        targetTypeID = #{targettypeid,jdbcType=INTEGER},
+      </if>
+      <if test="principal != null">
+        principal = #{principal,jdbcType=VARCHAR},
+      </if>
+      <if test="teamname != null">
+        teamName = #{teamname,jdbcType=VARCHAR},
+      </if>
+      <if test="teamcode != null">
+        teamCode = #{teamcode,jdbcType=VARCHAR},
+      </if>
+      <if test="registertime != null">
+        registerTime = #{registertime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contactphonenumber != null">
+        contactPhoneNUmber = #{contactphonenumber,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xxxx.hotel.vo.Receivetarget">
+    update receivetarget
+    set targetTypeID = #{targettypeid,jdbcType=INTEGER},
+      principal = #{principal,jdbcType=VARCHAR},
+      teamName = #{teamname,jdbcType=VARCHAR},
+      teamCode = #{teamcode,jdbcType=VARCHAR},
+      registerTime = #{registertime,jdbcType=TIMESTAMP},
+      contactPhoneNUmber = #{contactphonenumber,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <!-- 多条件分页查询团队信息 -->
+  <select id="selectByParams" parameterType="com.xxxx.hotel.query.ReceivetargetQuery" resultType="com.xxxx.hotel.vo.Receivetarget">
+    SELECT
+        r.*,
+        a.attributeDetailsName AS targetTypeName
+    FROM
+        receivetarget r
+    INNER JOIN attributedetails a ON r.targetTypeID = a.id
+    <where>
+        isValid = 1
+      <if test="teamName != null and teamName!=''">
+        and teamName like concat('%',#{teamName},'%')
+      </if>
+    </where>
+
+  </select>
+
+  <!-- 根据团队编号查询团队信息 -->
+  <select id="selectByTeamcode" parameterType="string" resultType="com.xxxx.hotel.vo.Receivetarget">
+    select
+        <include refid="Base_Column_List"></include>
+    from
+        receivetarget
+    where
+        isValid = 1
+    and
+        teamcode = #{teamcode}
+  </select>
+
+  <!-- 删除团队信息(批量删除)(修改操作, 将is_valid属性设置为0 ) -->
+  <update id="deleteBatchByIds">
+    update
+        receivetarget
+    set
+        isValid = 0
+    where
+    id in
+    <foreach collection="array" separator="," open="(" close=")" item="id">
+      #{id}
+    </foreach>
+  </update>
+</mapper>
